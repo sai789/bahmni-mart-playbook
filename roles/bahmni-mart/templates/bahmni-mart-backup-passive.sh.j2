@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+ssh -t centos@qa-reporting.ehealthunit.org "pg_dump analytics -U analytics > backUp.sql"
+EXIT_CODE=$?
+
+if [ ${EXIT_CODE} == 0 ]; then
+    echo "Backup of DB is successfully completed";
+else
+    echo "Backup of DB is failed"
+    exit ${EXIT_CODE}
+fi
